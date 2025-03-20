@@ -2,7 +2,7 @@ class Solution:
     def hasValidPath(self, grid: List[List[int]]) -> bool:
         rows = len(grid)
         columns = len(grid[0])
-        visited = set((0, 0))
+        visited = set()
         
         # dictionaries for transition rule
         up = {x: set([2, 3, 4]) for x in [2, 5, 6]}
