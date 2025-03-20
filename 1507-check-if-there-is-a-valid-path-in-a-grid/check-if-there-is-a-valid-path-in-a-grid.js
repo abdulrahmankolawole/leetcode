@@ -27,9 +27,10 @@ var hasValidPath = function(grid) {
     const directions = [[-1, 0, up], [0, 1, right], [1, 0, down], [0, -1, left]];
 
     function isValid(dr, dc, i, j, direction) {
-        if ((dr < 0 || dc < 0) || (dr >= rows || dc >= columns) || lookup.has(dr + ',' + dc)) return false;
+        if ((dr < 0 || dc < 0) || (dr == rows || dc == columns) || lookup.has(dr + ',' + dc)) return false;
         let street = grid[i][j];
-        if (!(street in direction) || !(direction[street].has(grid[dr][dc]))) return false;
+        let path = grid[dr][dc]
+        if (!(street in direction) || !(direction[street].has(path))) return false;
         return true;
     }
 
