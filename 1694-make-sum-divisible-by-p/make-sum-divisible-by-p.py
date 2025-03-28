@@ -1,24 +1,23 @@
 class Solution:
     def minSubarray(self, nums: List[int], p: int) -> int:
         lookup = {0: -1}
-        total = sum(nums)
-        remain = total % p
-        current_sum = 0
-        res = len(nums)
+        total_sum = sum(nums)
+        total_rem = total_sum % p
+        curr_sum = 0
+        output = len(nums)
 
-        if (remain == 0):
+        if total_rem == 0:
             return 0
 
         for i, val in enumerate(nums):
-            current_sum += val
-            current_rem = current_sum % p
+            curr_sum += val
+            curr_rem = curr_sum % p
 
-            prefix = (current_rem - remain + p) % p
+            target_rem = (curr_rem - total_rem + p) % p
 
-            if (prefix in lookup):
-                res = min(res, i - lookup[prefix])
-            lookup[current_rem] = i
+            if target_rem in lookup:
+                output = min(output, i - lookup[target_rem])
+            
+            lookup[curr_rem] = i
 
-        return -1 if res == len(nums) else res   
-
-        
+        return -1 if output == len(nums) else output
