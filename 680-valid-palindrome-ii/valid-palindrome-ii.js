@@ -18,7 +18,6 @@ var validPalindrome = function(s) {
         if (s[i] != s[j]) {
             word1 = s.slice(0, i) + s.slice(i + 1)
             word2 = s.slice(0, j) + s.slice(j + 1)
-            console.log(word1, word2)
             if (!isPalindrome(word1) && !isPalindrome(word2)) return false
         }
         i += 1
