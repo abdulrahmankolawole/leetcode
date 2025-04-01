@@ -1,27 +1,21 @@
-// iterate through the string
-// use a hash table to store the occurence of the last index of each letter
-// iterate through the string
-
 var partitionLabels = function(s) {
-    let lookup = {}
-    let start = 0
-    let end = 0
+    let size = 0
     let result = []
+    let end = 0
+    let lookup = {}
 
     for (let i = 0; i < s.length; i++) {
-        let char = s[i]
-        lookup[char] = i
+        lookup[s[i]] = i
     }
 
     for (let i = 0; i < s.length; i++) {
+        size += 1
         end = Math.max(end, lookup[s[i]])
         if (i == end) {
-            result.push(end - start + 1)
-            start = end + 1
-        }
+            result.push(size)
+            size = 0
+        } 
     }   
 
     return result
-
-
 };
