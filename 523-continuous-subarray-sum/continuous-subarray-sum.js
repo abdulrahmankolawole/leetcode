@@ -1,19 +1,15 @@
 var checkSubarraySum = function(nums, k) {
-    let lookup = {0: - 1}
-    let total = 0
+    let lookup = {}
+    lookup = {0: -1}
+    let currentSum = 0
 
     for (let i = 0; i < nums.length; i++) {
-        total += nums[i]
-        remainder = total % k
-    
-        if (!(remainder in lookup)) {
-            lookup[remainder] = i
-        } 
-        else if (i - lookup[remainder] > 1) return true
-        
-        // lookup[remainder] = i
+        currentSum += nums[i]
+        // currentRem = currentSum % k
+        currentRem = ((currentSum % k) + k) % k
+        if (!(currentRem in lookup)) lookup[currentRem] = i
+        else if (i - lookup[currentRem] >= 2) return true
     }
 
     return false
-
 };
