@@ -3,15 +3,15 @@ class Solution:
         lookup = {0: -1}
         curr_sum = 0
 
-        for i in range(len(nums)):
-            curr_sum += nums[i]
-
-            remainder = curr_sum % k
-
-            if (remainder not in lookup):
-                lookup[remainder] = i
-            elif (i - lookup[remainder] > 1):
-                return True
-
+        for idx, val in enumerate(nums):
+            curr_sum += val
+            curr_rem = ((curr_sum % k) + k) % k
+            if (curr_rem not in lookup):
+                lookup[curr_rem] = idx
+            else:
+                if (idx - lookup[curr_rem] > 1):
+                    return True
+        
         return False
+
         
