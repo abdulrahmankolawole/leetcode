@@ -40,8 +40,6 @@ class Solution:
                         grid[new_x][new_y] = 2
                         fresh -= 1
             minutes += 1
-            if (fresh <= 0):
-                break
 
         if (fresh > 0):
             return -1
