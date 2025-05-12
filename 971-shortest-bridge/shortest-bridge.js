@@ -3,7 +3,7 @@ var shortestBridge = function(grid) {
     let n = grid.length
 
     function isValid(i, j) {
-        if (i < 0 || j < 0 || i == n || j == n || mySet.has(i + ',' + j)) {
+        if (i < 0 || j < 0 || i == n || j == n) {
             return false
         }
         return true
@@ -35,7 +35,7 @@ var shortestBridge = function(grid) {
                 for (let [x, y] of directions) {
                     new_x = x + i
                     new_y = y + j
-                    if (isValid(new_x, new_y)) {
+                    if (isValid(new_x, new_y) && !mySet.has(new_x + ',' + new_y)) {
                         if (grid[new_x][new_y] == 1) return bridge
                         queue.push([new_x, new_y])
                         mySet.add(new_x + "," + new_y)
