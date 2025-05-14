@@ -1,6 +1,6 @@
 var hasValidPath = function(grid) {
-    const rows = grid.length;
-    const columns = grid[0].length;
+    const m = grid.length;
+    const n = grid[0].length;
     const queue = [[0, 0]]; // Start from the top-left corner
     const up = {};
     const right = {};
@@ -27,28 +27,29 @@ var hasValidPath = function(grid) {
     const directions = [[-1, 0, up], [0, 1, right], [1, 0, down], [0, -1, left]];
 
     function isValid(dr, dc, i, j, direction) {
-        if ((dr < 0 || dc < 0) || (dr == rows || dc == columns) || lookup.has(dr + ',' + dc)) return false;
-        let street = grid[i][j];
+        if (dr < 0 || dc < 0 || dr == m || dc == n) return false
+        if (lookup.has(dr + "," + dc)) return false
+        let street = grid[i][j]
         let path = grid[dr][dc]
-        if (!(street in direction) || !(direction[street].has(path))) return false;
-        return true;
+        if (!(street in direction)) return false
+        if (!(direction[street].has(path))) return false
+        return true
     }
 
     while (queue.length) {
-        let [i, j] = queue.shift();
+        let [i, j] = queue.shift()
 
-        if ((i === rows - 1) && (j === columns - 1)) return true;
+        if (i == m - 1 && j == n - 1) return true
+        for (let [x, y, direction] of directions) {
+            let newX = x + i
+            let newY = y + j
 
-        for (let [dr, dc, direction] of directions) {
-            let newX = dr + i;
-            let newY = dc + j;
-
-            if (isValid(newX, newY, i, j, direction)) {
-                queue.push([newX, newY]);
-                lookup.add(newX + "," + newY);
+            if (isValid(newX, newY, i, j, direction)){
+                queue.push([newX, newY])
+                lookup.add(newX + "," + newY)
             }
         }
     }
-
-    return false;
+    return false
 };
+
