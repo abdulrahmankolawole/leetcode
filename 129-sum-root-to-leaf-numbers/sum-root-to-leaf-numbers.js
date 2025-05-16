@@ -1,12 +1,13 @@
 var sumNumbers = function(root) {
     if (!root) return null
     let array = new Array()
+    sum = 0
 
     function traverse(node, currentPath) {
         if (!node) return ""
         currentPath += node.val
         if (!node.left && !node.right) {
-            array.push(Number(currentPath))
+            sum += Number(currentPath)
             return ""
         }
         if (node.left) traverse(node.left, currentPath)
@@ -15,5 +16,5 @@ var sumNumbers = function(root) {
     }   
 
     traverse(root, "")
-    return array.reduce((a, b)=> a + b, 0) 
+    return sum
 };
