@@ -1,34 +1,30 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
+        slookup = Counter(s[:len(p)])
+        plookup = Counter(p)
         output = []
         if (len(s) < len(p)):
             return output
-        pCounter = Counter(p)
-        sCounter = Counter(s[:len(p)])
-        output = [0] if (sCounter == pCounter) else []
 
-        i = 0
-        j = len(p)
+        if (plookup == slookup):
+            output.append(0)
 
-        while (j < len(s)):
-            sCounter[s[j]] = 1 + sCounter.get(s[j], 0)
-            sCounter[s[i]] -= 1 
+        for i in range(len(p), len(s)):
+            if (s[i] not in slookup):
+                slookup[s[i]] = 0
+            slookup[s[i]] += 1
+            if (slookup[s[i - len(p)]] == 1):
+                slookup.pop(s[i - len(p)])
+            else:
+                slookup[s[i - len(p)]] -= 1
 
-            if (sCounter[s[i]] == 0):
-                sCounter.pop(s[i])
-            i += 1
-        
-            if (sCounter == pCounter):
-                output.append(i)
-            
-            j += 1
+            if (plookup == slookup):
+                output.append(i - len(p) + 1)
 
-        
         return output
 
-
         
 
-
+    
 
         
