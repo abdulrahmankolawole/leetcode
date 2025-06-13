@@ -11,25 +11,27 @@ var shortestPathBinaryMatrix = function(grid) {
         return true
     }
 
-    let queue = [[0, 0, 1]]
+    let queue = [[0, 0]]
+    let distance = 1
     while (queue.length) {
         let size = queue.length
 
         for (let i = 0; i < size; i++) {
             
-            let [i, j, distance] = queue.shift()
+            let [i, j] = queue.shift()
             if (i == n - 1 && j == n-1) return distance
             for (let [x, y] of directions) {
                 let new_x = x + i
                 let new_y = y + j
 
                 if (isValid(new_x, new_y)) {
-                    queue.push([new_x, new_y, distance + 1])
+                    queue.push([new_x, new_y])
                     mySet.add(new_x + "," + new_y)
                 }
             }
 
         }
+        distance += 1
     }
 
     return -1
