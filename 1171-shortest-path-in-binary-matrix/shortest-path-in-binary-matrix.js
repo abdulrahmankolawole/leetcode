@@ -7,7 +7,7 @@ var shortestPathBinaryMatrix = function(grid) {
 
 
     function isValid(i, j) {
-        if (i < 0 || j < 0 || i== n || j == n || grid[i][j] == 1 || mySet.has(i + "," + j)) return false
+        if (i < 0 || j < 0 || i== n || j == n || grid[i][j] == 1) return false
         return true
     }
 
@@ -26,7 +26,7 @@ var shortestPathBinaryMatrix = function(grid) {
 
                 if (isValid(new_x, new_y)) {
                     queue.push([new_x, new_y])
-                    mySet.add(new_x + "," + new_y)
+                    grid[new_x][new_y] = 1
                 }
             }
 
