@@ -8,7 +8,7 @@ class Solution:
         while (j < len(cards)):
             card = cards[j]
 
-            while (cards[j] in lookup):
+            while (card in lookup):
                 lookup.remove(cards[i])
                 output = min(output, j - i + 1)
                 i += 1
