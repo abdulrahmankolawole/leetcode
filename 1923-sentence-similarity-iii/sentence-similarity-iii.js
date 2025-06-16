@@ -1,25 +1,22 @@
 var areSentencesSimilar = function(sentence1, sentence2) {
+    let arr1 = sentence1.split(" ")
+    let arr2 = sentence2.split(" ")    
 
-    let arrOne = sentence1.split(" ")
-    let arrTwo = sentence2.split(" ")
-
-    if (arrTwo.length < arrOne.length) {
-        [arrOne, arrTwo] = [arrTwo, arrOne]
+    if (arr2.length < arr1.length) {
+        [arr1, arr2] = [arr2, arr1]
     }
 
-    let l1 = 0
-    let l2 = 0
-    let r1 = arrOne.length - 1
-    let r2 = arrTwo.length - 1
+    i = 0
+    j = arr1.length - 1
+    r = arr2.length - 1
 
-    while (l1 < arrOne.length && arrOne[l1] == arrTwo[l1]) {
-        l1 += 1
+   
+    while (i < arr1.length && arr1[i] == arr2[i]) i += 1
+
+    while (j >= 0 && r >= 0 && arr1[j] == arr2[r]) {
+        j -= 1
+        r -= 1
     }
 
-    while (r1 >= 0 && r2 >=0 && arrOne[r1] == arrTwo[r2]) {
-        r2 -= 1
-        r1 -= 1
-    }
-
-    return l1 > r1
+    return i > j
 };
