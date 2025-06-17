@@ -8,9 +8,9 @@ class Solution:
         if (grid[0][0] != 0):
             return -1
 
-            
+
         def isValid(i, j):
-            if (i < 0 or j < 0 or i == n or j == n or grid[i][j] ==  1):
+            if (i < 0 or j < 0 or i == n or j == n or grid[i][j]):
                 return False
             return True
 
