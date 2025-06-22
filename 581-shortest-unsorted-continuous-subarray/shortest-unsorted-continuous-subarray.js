@@ -1,19 +1,11 @@
 var findUnsortedSubarray = function(nums) {
+    let i = 0
+    let j = nums.length - 1
     let sorted = [...nums].sort((a, b)=> a - b)
-    i = 0
-    j = nums.length - 1
 
-    while (i < nums.length) {
-        if (nums[i] != sorted[i]) break
-        i += 1
-    }    
+    while (i <= j && nums[i] == sorted[i]) i += 1
+    while (i <= j && nums[j] == sorted[j]) j -= 1
+    console.log(i, j)
 
-    while (j >= 0) {
-        if (nums[j] != sorted[j]) break
-        j -= 1
-    }
-
-    if (i == nums.length) return 0
-
-    return j - i + 1
+    return j - i + 1    
 };
