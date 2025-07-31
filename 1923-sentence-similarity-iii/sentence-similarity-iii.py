@@ -1,24 +1,22 @@
 class Solution:
     def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
+        arr1 = sentence1.split(" ")
+        arr2 = sentence2.split(" ")
 
-        arr_one = sentence1.split(" ")
-        arr_two = sentence2.split(" ")
-        
-        if (len(arr_two) < len(arr_one)):
-            arr_one, arr_two = arr_two, arr_one
+        if (len(arr2) < len(arr1)):
+            arr1, arr2 = arr2, arr1
 
         i = 0
-        j = len(arr_one) - 1
+        j = len(arr1) - 1
+        r = len(arr2) - 1
 
-        a = 0
-        b = len(arr_two) - 1
-
-        while (i < len(arr_one) and arr_one[i] == arr_two[i]):
+        while (i < len(arr1) and arr1[i] == arr2[i]):
             i += 1
-        
-        while (j >= 0 and b >=0 and arr_one[j] == arr_two[b]):
-            j -= 1
-            b -= 1
 
+        while (j >= 0 and r >= 0 and arr1[j] == arr2[r]):
+            j -= 1
+            r -= 1
+
+        
         return i > j
         
