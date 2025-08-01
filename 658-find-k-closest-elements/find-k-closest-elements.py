@@ -11,6 +11,5 @@ class Solution:
             else:
                 j = mid
 
-        
         return arr[i: i + k]
         
