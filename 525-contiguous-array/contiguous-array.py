@@ -1,23 +1,19 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         lookup = {0: -1}
-        count = 0
-        j = 0
+        curr_sum = 0
         output = 0
 
-        while (j < len(nums)):
-            if (nums[j] == 0):
-                count -= 1
-            elif (nums[j] == 1):
-                count += 1
+        for i in range(len(nums)):
+            num = nums[i]
+            if (num == 0):
+                curr_sum -= 1
+            elif (num == 1):
+                curr_sum += 1
 
-            if (count not in lookup):
-                lookup[count] = j
+            if (curr_sum not in lookup):
+                lookup[curr_sum] = i
             else:
-                output = max(output, j - lookup[count])
-
-            j += 1
+                output = max(output, i - lookup[curr_sum])
 
         return output
-            
-        
