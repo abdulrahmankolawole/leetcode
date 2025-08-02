@@ -1,7 +1,6 @@
 class Solution:
     def isLongPressedName(self, name: str, typed: str) -> bool:
-        
-        if (len(name) > len(typed)):
+        if (len(typed) < len(name)):
             return False
 
         i = 0
@@ -12,8 +11,7 @@ class Solution:
                 i += 1
             elif (j == 0 or typed[j] != typed[j - 1]):
                 return False
-
-            j +=1
+            j += 1
 
         return i == len(name)
         
