@@ -5,14 +5,12 @@ class Solution:
         output = 0
 
         for i in range(len(s) - 1):
-            if (s[i] == "0"):
+            char = s[i]
+            if (char == "0"):
                 zeroes += 1
             else:
                 ones -= 1
 
-            output = max(output, zeroes + ones)
+            output = max(output, ones + zeroes)
 
         return output
-
-
-        
