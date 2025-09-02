@@ -1,20 +1,19 @@
 var maxScore = function(s) {
     let zeroes = 0
     let ones = 0
-    let maxScore = 0
+    let output = 0
 
     for (let char of s) {
-        num = parseInt(char)
-        if (num) ones += 1
-    }    
+        if (char == "1") ones += 1
+    }
 
     for (let i = 0; i < s.length - 1; i++) {
         let char = s[i]
-        if (char == "0") zeroes += 1
-        else ones -= 1
-        let score = zeroes + ones
-        maxScore = Math.max(score, maxScore)
+        if (char == "1") ones -= 1
+        else zeroes += 1
+        score = zeroes + ones
+        output = Math.max(output, score) 
     }
 
-    return maxScore
+    return output
 };
