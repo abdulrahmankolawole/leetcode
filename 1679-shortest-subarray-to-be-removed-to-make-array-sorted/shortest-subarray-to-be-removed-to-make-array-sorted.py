@@ -1,29 +1,32 @@
 class Solution:
     def findLengthOfShortestSubarray(self, arr: List[int]) -> int:
+
+        # find the length of minimum postfix that can be removed
+        i = 0
         N = len(arr)
-        l = 0
-        r = N - 1
-        res = N
-        while (l < N - 1 and arr[l] <= arr[l + 1]):
-            l += 1
+        j = N - 1
+        output = N
 
-        while (r > 0 and arr[r] >= arr[r - 1]):
-            r -= 1
+        while (i < N - 1 and arr[i] <= arr[i + 1]):
+            i += 1
 
-        if (r == 0):
+        # find the length of minimum prefix that can be removed
+        while (j > 0 and arr[j] >= arr[j - 1]):
+            j -= 1
+
+        if (j == 0):
             return 0
 
-        i = 0
-        j = r
-        res = min(res, r, N - l - 1)
-        while (i <= l and j < N):
-            if (arr[i] <= arr[j]):
-                res = min(res, j - i - 1)
-                i += 1
+        l = 0
+        r = j
+        output = min(output, N - i - 1, r)
+
+        while (l <= i and r < N):
+            if (arr[l] <= arr[r]):
+                output = min(output, r - l - 1)
+                l += 1
             else:
-                j += 1
+                r += 1
 
-
-        return res
-
+        return output
         
