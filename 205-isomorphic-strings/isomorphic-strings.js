@@ -10,8 +10,9 @@ var isIsomorphic = function(s, t) {
     }
 
     for (let i = 0; i < t.length; i++) {
-        if (tLookup[t[i]] && tLookup[t[i]] != s[i]) return false
-        tLookup[t[i]] = s[i]
+        let char = t[i]
+        if (char in tLookup && tLookup[char] != s[i]) return false
+        tLookup[char] = s[i]
     }
 
     return true
