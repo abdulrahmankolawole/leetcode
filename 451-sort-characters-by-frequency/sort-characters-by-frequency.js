@@ -1,22 +1,23 @@
 var frequencySort = function(s) {
     let lookup = {}
+    let bucket = {}
 
     for (let char of s) {
         if (!(char in lookup)) lookup[char] = 0
         lookup[char] += 1
-    }    
+    }        
 
-    let array = []
-    
-
-    for (let [key, value] of Object.entries(lookup)) {
-        array.push([key, value])
+    for (let [char, count] of Object.entries(lookup)) {
+        if (!(count in bucket)) bucket[count] = []
+        bucket[count].push(char)
     }
 
-    array.sort((a, b)=> b[1] - a[1])
     let output = ""
-    for (let [key, value] of array) {
-       output += key.repeat(value)
+    for (let count = s.length; count >= 1; count--) {
+        if (count in bucket) {
+            let chars = bucket[count]
+            for (let char of chars) output += char.repeat(count)
+        }
     }
 
     return output
