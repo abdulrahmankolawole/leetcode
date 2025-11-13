@@ -1,55 +1,54 @@
 var numMagicSquaresInside = function(grid) {
-    let rows = grid.length;
-    let columns = grid[0].length;
-    let output = 0;
+    let rows = grid.length
+    let columns = grid[0].length
+    let count = 0
 
-    function magic(r, c) {
-        // if elements in magic square are not distinct, return 0
+    function isMagic(row, col) {
         let lookup = new Set()
-        // Check all 9 cells in the 3x3 grid
-        for (let i = r; i < r + 3; i++) {
-            for (let j = c; j < c + 3; j++) {
-                let cell = grid[i][j];
-                if (lookup.has(cell) || cell < 1 || cell > 9) {
-                    return 0;
-                }
-                lookup.add(cell);
+
+        for (let i = row; i < row + 3; i++) {
+            for (let j = col; j < col + 3; j++) {
+                let cell = grid[i][j]
+                if (lookup.has(cell) || cell < 1 || cell > 9) return false
+                lookup.add(cell)
             }
         }
-
-        // iterate through row
-        for (let i = r; i < r + 3; i++) {
+        for (let i = row; i < row + 3; i++) {
             let row_sum = 0
-            for (let j = c; j < c + 3; j++) {
+            for (let j = col; j < col + 3; j++) {
                 row_sum += grid[i][j]
             }
-            if (row_sum != 15) return 0
+            if (row_sum != 15) return false
         }
 
-        // Check sums of columns
-        for (let j = c; j < c + 3; j++) {
-            let column_sum = 0;
-            for (let i = r; i < r + 3; i++) {
-                column_sum += grid[i][j];
+        for (let j = col; j < col + 3; j++) {
+            let col_sum = 0
+            for (let i = row; i < row + 3; i++) {
+                col_sum += grid[i][j]
             }
-            if (column_sum !== 15) return 0;
+            if (col_sum != 15) return false
         }
 
-        // iterate through diagonals
-        if (grid[r][c] + grid[r + 1][c + 1] + grid[r + 2][c + 2] != 15 || grid[r][c + 2] + grid[r + 1][c + 1] + grid[r + 2][c] != 15) return 0 
+        let primary_diag = 0
+        primary_diag += grid[row][col] + grid[row + 1][col + 1] + grid[row + 2][col + 2]
 
-        return 1
+        if (primary_diag != 15) return false
 
+
+        let secondary_diag = 0
+        secondary_diag += grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col]
+        if (secondary_diag != 15) return false
+
+        return true
     }
 
-    // iterate through grid
-    // if its a magic square
-    // increment the result by 1
     for (let i = 0; i < rows - 2; i++) {
         for (let j = 0; j < columns - 2; j++) {
-            output += magic(i, j)
+            if (isMagic(i, j)) {
+                count += 1
+            }
         }
     }
-    return output
 
+    return count
 };
