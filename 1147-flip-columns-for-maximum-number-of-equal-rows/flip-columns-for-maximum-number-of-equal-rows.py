@@ -14,8 +14,5 @@ class Solution:
                 lookup[row_key] = 0
             lookup[row_key] += 1
 
-        for key in lookup:
-            if (lookup[key] > 1):
-                count = max(count, lookup[key])
 
-        return 1 if count == 0 else count
+        return max(lookup.values())
