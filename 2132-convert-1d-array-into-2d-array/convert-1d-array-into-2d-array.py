@@ -1,7 +1,7 @@
 class Solution:
     def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
         size = len(original)
-        if (size > m * n or size < m * n):
+        if (size != m * n):
             return []
         matrix = [[None] * n for _ in range(m)]
         k = 0
