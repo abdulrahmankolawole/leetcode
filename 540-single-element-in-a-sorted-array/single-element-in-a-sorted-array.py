@@ -8,11 +8,13 @@ class Solution:
 
             if ((mid == 0 or nums[mid] != nums[mid - 1]) and (mid == len(nums) - 1 or nums[mid] != nums[mid + 1])):
                 return nums[mid]
-            left_size = mid - 1 if nums[mid] == nums[mid - 1] else mid
+            left_size = mid if nums[mid] != nums[mid - 1] else mid - 1
 
-            if (left_size % 2 == 0):
-                i = mid + 1
-            else:
+            if (left_size % 2 == 1):
                 j = mid - 1
-            
+            else:
+                i = mid + 1
+
+
+        return -1
         
