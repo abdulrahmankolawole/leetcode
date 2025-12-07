@@ -1,12 +1,12 @@
 class Solution:
     def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+        output = [None] * len(spells)
         potions.sort()
-        output = []
 
         def bs(spell):
             i = 0
             j = len(potions) - 1
-        
+
             while (i <= j):
                 mid = (i + j) // 2
 
@@ -16,11 +16,9 @@ class Solution:
                     i = mid + 1
 
             return i
-
-        for spell in spells:
-            pairs = bs(spell)
-            output.append(len(potions) - pairs)
+        
+        for i in range(len(spells)):
+            spell = spells[i]
+            output[i] = len(potions) - bs(spell)
 
         return output
-
-        
