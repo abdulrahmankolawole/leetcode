@@ -6,15 +6,11 @@ class Solution:
         boats = 0
 
         while (i <= j):
+            diff = limit - people[j]
 
-            if (people[j] + people[i]) <= limit:
-                j -= 1
+            if (diff >= people[i]):
                 i += 1
-            else:
-                j -= 1
-            
+            j -= 1
             boats += 1
 
         return boats
-
-        
