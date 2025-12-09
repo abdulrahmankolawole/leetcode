@@ -1,13 +1,20 @@
 var reverseWords = function(s) {
-    s = s.trim().split(" ").filter((word) => !!(word))
-    i = 0
-    j = s.length - 1
+    let split = s.trim().split(" ")
+    let array = []
+
+    for (let word of split) {
+        if (word) array.push(word)
+    }
+    let i = 0
+    let j = array.length - 1
 
     while (i < j) {
-        [s[i], s[j]] = [s[j], s[i]]
+        [array[i], array[j]] = [array[j], array[i]]
         i += 1
         j -= 1
     }   
 
-    return s.join(" ") 
+    return array.join(" ")
+
+
 };
