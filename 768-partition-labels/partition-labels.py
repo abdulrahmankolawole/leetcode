@@ -2,20 +2,19 @@ class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         lookup = {}
         output = []
-        for idx, val in enumerate(s):
-            lookup[val] = idx
-        
-        lastIdx = 0
         size = 0
-        for idx, val in enumerate(s):
-            lastIdx = max(lastIdx, lookup[val])
+        end = 0
+
+        for i in range(len(s)):
+            lookup[s[i]] = i
+
+        for i in range(len(s)):
             size += 1
+            end = max(end, lookup[s[i]])
 
-            if (idx == lastIdx):
+            if (i == end):
                 output.append(size)
-                size = 0
-
+                size =0
         return output
-
-
+             
         
