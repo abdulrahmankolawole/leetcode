@@ -1,33 +1,30 @@
 var findLengthOfShortestSubarray = function(arr) {
-    let N = arr.length;
+    let N = arr.length
+    let r = N - 1
     let l = 0
-    let r = N - 1;
+    let output = N 
 
-    // remove prefix
-    while (r > 0 && arr[r - 1] <= arr[r]) {
-        r -= 1
-    }
-    let res = r
+    while (r > 0 && arr[r - 1] <= arr[r]) r -= 1    
+    while (l + 1 <= N && arr[l] <= arr[l + 1]) l += 1
 
-    // remove postfix
-    while (l + 1 < N && arr[l] <= arr[l + 1]) {
-        l += 1
-    }
-    // If the entire array is already sorted
-    if (l === N - 1) return 0;
-    res = Math.min(res, N -l - 1, r)
+    output = r
+    if (l == N - 1) return 0
+    output = Math.min(r, N - l - 1, output)
 
 
+    let i = 0
+    let j = r
 
-    // Step 4: Use two pointers to find the smallest middle part to remove
-    let i = 0, j = r;
     while (i <= l && j < N) {
         if (arr[i] <= arr[j]) {
-            res = Math.min(res, j - i - 1);
-            i++;
-        } else {
-            j++;
+            length = j - i - 1
+            output = Math.min(output, length)
+            i += 1
+        }
+        else {
+            j ++
         }
     }
-    return res
+
+    return output
 };
