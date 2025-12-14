@@ -12,6 +12,7 @@ class Solution:
 
         moves = 0
         balls = 0
+        print(output)
         for i in range(len(boxes) - 1, -1, -1):
             output[i] += moves + balls
 
