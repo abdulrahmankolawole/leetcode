@@ -1,11 +1,11 @@
 var minStartValue = function(nums) {
-    let minSum = Infinity
-    let curSum = 0
+    let runningSum = 0
+    let output = 0
 
-    for (let num of nums){
-        curSum += num
-        minSum = Math.min(minSum, curSum)
+    for (let num of nums) {
+        runningSum += num
+        output= Math.min(output, runningSum)
     }
 
-    return 1 - Math.min(minSum, 0)
+    return 1 - output
 };
