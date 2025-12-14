@@ -1,18 +1,15 @@
 var checkSubarraySum = function(nums, k) {
-    let lookup = {0: -1}
+    let lookup = new Set()
     let runningSum = 0
-    let output = 0
+    let prevRem = 0
 
-    for (let i = 0; i < nums.length; i++) {
-        runningSum += nums[i]
-        let remainder = ((runningSum % k) + k) % k
-        if (!(remainder in lookup)) lookup[remainder] = i
-        else {
-            let length = i - lookup[remainder]
-            if (length > 1) {
-                return true
-            }
-        }
+    for (let num of nums) {
+        runningSum += num
+        let remainder = runningSum % k
+        if (lookup.has(remainder) )return true
+        lookup.add(prevRem)
+        prevRem = remainder
+        
     }
     return false
 };
