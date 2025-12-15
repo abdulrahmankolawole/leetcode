@@ -1,22 +1,22 @@
 var maxFreq = function(s, maxLetters, minSize, maxSize) {
+    let output = 0
     let j = 0
-    let maxFreq = 0
     let lookup = {}
 
-    function countUnique(string) {
-        let mySet = new Set(string.split(""))
-        return mySet.size
+    function noUniqueChars(string) {
+        let lookup = new Set(string)
+        return lookup.size
     }
-
+    
     while (j <= s.length - minSize) {
-        let substring = s.slice(j, j + minSize)
-
-        if ((countUnique(substring) <= maxLetters)) {
-            if (!(substring in lookup)) lookup[substring] = 0
-            lookup[substring] += 1
-            maxFreq = Math.max(maxFreq, lookup[substring])
+        let substr = s.slice(j, j + minSize)
+        if (noUniqueChars(substr) <= maxLetters) {
+            if (!(substr in lookup)) lookup[substr] = 0
+            lookup[substr] += 1
+            output = Math.max(lookup[substr], output)
         }
         j += 1
-    }   
-    return maxFreq
+    }
+
+    return output
 };
