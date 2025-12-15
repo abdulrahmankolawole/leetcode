@@ -1,22 +1,21 @@
 var lengthOfLongestSubstring = function(s) {
     let i = 0
     let j = 0
-    let maxLength = 0
-    let lookup = new Set()
+    let output = 0
+    let lookup = {}
 
     while (j < s.length) {
 
-        while (lookup.has(s[j])) {
-            lookup.delete(s[i])
+        while (s[j] in lookup) {
+            if (lookup[s[i]] == 1) delete lookup[s[i]]
+            else lookup[s[i]] -= 1
             i += 1
         }
 
-        lookup.add(s[j])
-        maxLength = Math.max(maxLength, j - i + 1)
+        if (!(s[j] in lookup)) lookup[s[j]] = 0
+        lookup[s[j]] += 1
+        output = Math.max(output, j - i + 1)
         j += 1
     }   
-
-    return maxLength
-
-
+    return output
 };
