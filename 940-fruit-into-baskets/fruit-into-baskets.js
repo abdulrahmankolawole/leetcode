@@ -1,25 +1,24 @@
 var totalFruit = function(fruits) {
     let i = 0
     let j = 0
-    let lookup = {}
+    let lookup = new Map()
     let output = 0
 
     while (j < fruits.length) {
-        fruit = fruits[j]
-        if (!(fruit in lookup)) lookup[fruit] = 0
-        lookup[fruit] += 1
+        let fruit = fruits[j]
 
-        while (Object.keys(lookup).length > 2) {
-            if (lookup[fruits[i]] == 1) {
-                delete lookup[fruits[i]]
-            }
-            else lookup[fruits[i]] -= 1
+        lookup.set(fruit, lookup.get(fruit) + 1 || 1)
+
+        while (lookup.size > 2) {
+            fruitCount = lookup.get(fruits[i])
+            if (fruitCount == 1) lookup.delete(fruits[i])
+            else lookup.set(fruits[i], fruitCount - 1)
             i += 1
         }
 
         output = Math.max(output, j - i + 1)
         j += 1
-    }    
+    }
 
     return output
 };
