@@ -1,25 +1,30 @@
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
-        n = len(s)
-        count = Counter(s)
+
+        lookup = Counter(s)
+        def atLeastK():
+            if (lookup["a"] < k or lookup["b"] < k or lookup["c"] < k):
+                return False
+            return True
         
-        if count['a'] < k or count['b'] < k or count['c'] < k:
+        if (not atLeastK()):
             return -1
-        
+
         i = 0
         j = 0
         output = float("inf")
-        
-        while j < len(s):
-            count[s[j]] -= 1
-            
-            while (count['a'] < k or
-                   count['b'] < k or
-                   count['c'] < k):
-                count[s[i]] += 1
+
+        while (j < len(s)):
+            lookup[s[j]] -= 1
+
+            while (not atLeastK()):
+                lookup[s[i]] += 1
                 i += 1
-            
-            output = min(output,len(s) - (j - i + 1))
+
+            output = min(output, len(s) - (j - i + 1))
             j += 1
-        
+
+
         return output
+
+        
