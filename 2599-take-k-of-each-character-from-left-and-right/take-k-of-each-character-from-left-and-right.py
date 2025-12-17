@@ -2,9 +2,6 @@ from collections import Counter
 
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
-        # if k == 0:
-        #     return 0
-        
         n = len(s)
         count = Counter(s)
         
@@ -17,21 +14,21 @@ class Solution:
         lookup = {'a': 0, 'b': 0, 'c': 0}
         i = 0
         j = 0
-        output = 0
+        output = float("inf")
         
         while j < len(s):
-            lookup[s[j]] += 1
+            count[s[j]] -= 1
             
             # Shrink from i while the current window (middle) makes any char taken < k
-            while (count['a'] - lookup['a'] < k or
-                   count['b'] - lookup['b'] < k or
-                   count['c'] - lookup['c'] < k):
-                lookup[s[i]] -= 1
+            while (count['a'] < k or
+                   count['b'] < k or
+                   count['c'] < k):
+                count[s[i]] += 1
                 i += 1
             
-            # After shrinking, the lookupent window [i..j] is valid middle
-            output = max(output, j - i + 1)
+            # After shrinking, the current window [i..j] is valid middle
+            output = min(output,len(s) - (j - i + 1))
             j += 1
         
         # Minimum characters taken = total length - longest valid middle
-        return n - output
+        return output
