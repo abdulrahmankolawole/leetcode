@@ -1,6 +1,5 @@
 class Solution:
     def minimumRecolors(self, blocks: str, k: int) -> int:
-        total_blacks = blocks.count("B")
         i = 0
         j = 0
         output = float("inf")
