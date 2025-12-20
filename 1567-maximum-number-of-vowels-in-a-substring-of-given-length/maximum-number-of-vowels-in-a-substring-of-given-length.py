@@ -1,24 +1,23 @@
 class Solution:
     def maxVowels(self, s: str, k: int) -> int:
-        my_set = {"a", "e", "i", "o", "u"}
-        count = 0
-        max_count = 0
+        lookup = set("aeiou")
+        vowels = 0
+        output = 0
 
         for i in range(k):
-            if (s[i] in my_set):
-                count += 1
-        
-        max_count = max(count, max_count)
+            char = s[i]
+            if (char in lookup):
+                vowels += 1
+
+        output = max(vowels, output)
+
         for i in range(k, len(s)):
-            if (s[i] in my_set):
-                count += 1
-            if (s[i - k] in my_set):
-                count -= 1
-            max_count = max(count, max_count)
+            char = s[i]
+            if (char in lookup):
+                vowels += 1
+            if (s[i - k] in lookup):
+                vowels -= 1
 
-        
-        return max_count
-            
-                
+            output = max(vowels, output)
 
-        
+        return output     
