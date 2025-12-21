@@ -9,18 +9,12 @@ class Solution:
         while (j < len(nums)):
             sub_arr_sum += nums[j]
 
-            while (nums[j] in lookup):
-                lookup.remove(nums[i])
-                sub_arr_sum -= nums[i]
-                i += 1
-
-            while (j - i + 1 > k):
+            while (j - i + 1 > k or nums[j] in lookup):
                 lookup.remove(nums[i])
                 sub_arr_sum -= nums[i]
                 i += 1
             
             if (j - i + 1 == k):
-                # print(nums[i: j + 1])
                 output = max(output, sub_arr_sum)
             lookup.add(nums[j])
 
