@@ -14,7 +14,6 @@ class Solution:
                 sub_arr_sum -= nums[i]
                 i += 1
 
-            lookup.add(nums[j])
             while (j - i + 1 > k):
                 lookup.remove(nums[i])
                 sub_arr_sum -= nums[i]
@@ -23,6 +22,7 @@ class Solution:
             if (j - i + 1 == k):
                 # print(nums[i: j + 1])
                 output = max(output, sub_arr_sum)
+            lookup.add(nums[j])
 
             j += 1
 
