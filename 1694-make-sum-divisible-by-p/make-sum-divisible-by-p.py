@@ -3,21 +3,21 @@ class Solution:
         lookup = {0: -1}
         total_sum = sum(nums)
         total_rem = total_sum % p
-        curr_sum = 0
-        output = len(nums)
-
-        if total_rem == 0:
+        if (total_rem == 0):
             return 0
 
-        for i, val in enumerate(nums):
-            curr_sum += val
-            curr_rem = curr_sum % p
+        output = len(nums)
+        current_sum = 0
 
-            target_rem = (curr_rem - total_rem + p) % p
+        for i in range(len(nums)):
+            current_sum += nums[i]
+            current_rem = current_sum % p
 
-            if target_rem in lookup:
-                output = min(output, i - lookup[target_rem])
+            prefix_rem = ((current_rem - total_rem) + p) % p
+
+            if (prefix_rem in lookup):
+                output = min(output, i - lookup[prefix_rem])
             
-            lookup[curr_rem] = i
+            lookup[current_rem] = i
 
-        return -1 if output == len(nums) else output
+        return - 1 if output == len(nums) else output
