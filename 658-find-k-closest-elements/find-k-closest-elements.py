@@ -9,7 +9,7 @@ class Solution:
             if (x - arr[mid] > arr[mid + k] - x):
                 i = mid + 1
             else:
-                j = mid
+                j = mid 
 
-        return arr[i: i + k]
-        
+
+        return arr[i: i + k ]
