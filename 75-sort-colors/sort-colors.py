@@ -12,8 +12,11 @@ class Solution:
                 nums[i], nums[mid] = nums[mid], nums[i]
                 i += 1
                 mid += 1
-            elif (nums[mid] == 1):
-                mid +=1
-            else:
+            elif (nums[mid] == 2):
                 nums[mid], nums[j] = nums[j], nums[mid]
                 j -= 1
+            else:
+                mid += 1
+
+        return nums
+        
