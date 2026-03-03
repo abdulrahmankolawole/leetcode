@@ -16,7 +16,7 @@ class Solution:
         for i in range(1, k):
             if ((i + k) % k not in lookup):
                 continue
-            if (((i + k) % k in lookup and (k-i + k) % k not in lookup)):
+            if (k-i + k) % k not in lookup:
                 return False
             if ((lookup[(i + k) % k] != lookup[(k - i + k) % k])):
                 return False
