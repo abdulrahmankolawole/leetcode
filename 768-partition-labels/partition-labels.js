@@ -2,22 +2,20 @@ var partitionLabels = function(s) {
     let lookup = {}
 
     for (let i = 0; i < s.length; i++) {
-        let char = s[i]
-        lookup[char] = i
-    }    
+        lookup[s[i]] = i
+    }
 
-    let lastIdx = 0
-    let size = 0
+    let size = 1
+    let end = 0
     let output = []
-
     for (let i = 0; i < s.length; i++) {
-        size += 1
-        let char = s[i]
-        lastIdx = Math.max(lastIdx, lookup[char])
-        if (lastIdx == i) {
+        end = Math.max(end, lookup[s[i]])
+        if (i == end) {
             output.push(size)
             size = 0
         }
+        size += 1
     }
+
     return output
 };
