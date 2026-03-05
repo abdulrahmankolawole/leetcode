@@ -1,11 +1,10 @@
 var equalSubstring = function(s, t, maxCost) {
-    let currentCost = 0
-    let output = 0
     let i = 0
     let j = 0
+    let currentCost = 0
+    let output = 0
 
     while (j < s.length) {
-
         currentCost += Math.abs(s[j].charCodeAt(0) - t[j].charCodeAt(0))
 
         while (currentCost > maxCost) {
@@ -14,8 +13,8 @@ var equalSubstring = function(s, t, maxCost) {
         }
 
         output = Math.max(output, j - i + 1)
-        j +=1
-    }   
+        j ++
+    }
 
-    return output 
+    return output
 };
