@@ -1,23 +1,23 @@
 class Solution:
     def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:
-        i = 0
-        j = 0
-        output = 0
         lookup = {}
+        output = 0
+        j = 0
 
-        def noOfUnique(char):
-            lookup = set([x for x in char])
-            return len(lookup)
+        def isValid(word):
+            my_set = set(word)
 
-        while (j < len(s) - (minSize - 1)):
-            substring = s[j: j + minSize]
+            return len(my_set) <= maxLetters
+
+        while (j <= len(s) - minSize):
+            substr = s[j: j + minSize]
             
-            if (noOfUnique(substring) <= maxLetters):
-                if (substring not in lookup):
-                    lookup[substring] = 0
-                lookup[substring] += 1
+            if (isValid(substr)):
+                if (substr not in lookup):
+                    lookup[substr] = 0
+                lookup[substr] += 1
 
-                output = max(output, lookup[substring])
+                output = max(output, lookup[substr])
 
             j += 1
 
